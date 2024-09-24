@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import ScoreIndicator from './Components/ScoreIndicator';
+import imgDart from './Assets/dart2.png';
 
 document.title = "Jeu de Flechettes";
 
@@ -10,6 +11,8 @@ function App() {
 
   const [totalScore, setTotalScore]=useState(501);
   const [multiplicator, setMultiplicator]=useState(1);
+  const [darts, setDart]=useState(3);
+  const [rounds, setRound]=useState(0);
 
 const handleChange=(CharToSubstract)=>{
   if (CharToSubstract==25 && multiplicator==3){
@@ -28,6 +31,11 @@ const handleChange=(CharToSubstract)=>{
   }
 };
 
+const replay=()=>{
+  setTotalScore(501);
+  setMultiplicator(1);
+};
+
 
   return (
     <>
@@ -35,12 +43,17 @@ const handleChange=(CharToSubstract)=>{
         <header className='col-12 d-flex gap-3 justify-content-center mb-2 mt-2'>
           <h1>Flechettes</h1>
           <ScoreIndicator value={totalScore} maxValue={501} />
-
-          {/* <h2>Score :</h2>
-          <input value={totalScore} disabled /> */}
-        </header>
-
-        <div className='d-flex flex-column align-items-center'>
+          <img src={imgDart} alt="" className='dartImg'/>
+          </header>
+          {totalScore==0? <>
+              {/* {j'affiche le message de victoire} */}
+             <div className='d-flex justify-content-center'>
+              <Button className='col-2 align-self-center col 3'variant="primary" size="lg" onClick={replay}>Rejouer</Button>{' '}
+              </div>
+          </> : <>
+              {/* J'affiche le message de defaite */}
+          
+          <div className='d-flex flex-column align-items-center'>
           <div className='col-5 d-flex justify-content-between col 3 mb-2 mt-5'>
             <Button className="col-2" variant="light" size="lg" onClick={() => handleChange(1)}>1</Button>{' '}
             <Button className="col-2" variant="dark" size="lg" onClick={() => handleChange(2)}>2</Button>{' '}
@@ -71,12 +84,17 @@ const handleChange=(CharToSubstract)=>{
           </div>
           <div className='col-5 d-flex justify-content-between col 3 mb-2'>
             <Button className="col-2"variant="warning" size="lg" onClick={() => handleChange(25)}>25</Button>{' '}
-            <Button className="col-2" variant="info" size="lg" onClick={() => setMultiplicator(2)}>Double</Button>{' '}
-            <Button className="col-2" variant="danger" size="lg" onClick={() => setMultiplicator(3)}>Triple</Button>{' '}
-            <Button className="col-2" variant="secondary" size="lg">Nul</Button>{' '}
+            <Button className="col-3" variant="info" size="lg" onClick={() => setMultiplicator(2)}>Double</Button>{' '}
+            <Button className="col-3" variant="danger" size="lg" onClick={() => setMultiplicator(3)}>Triple</Button>{' '}
+            <Button className="col-2" variant="secondary" size="lg" onClick={() => handleChange(0)}>Nul</Button>{' '}
           </div>
         </div>
+        </> 
+          }
       </div>
+        
+
+        
     </>
   );
 
