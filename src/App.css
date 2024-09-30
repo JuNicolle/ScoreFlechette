@@ -12,7 +12,7 @@ header{
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: cyan;
+  color: whitesmoke;
   font-size: xx-large;
   font-family: Arial, Helvetica, sans-serif;
   border: 1px solid white;
@@ -22,4 +22,12 @@ header{
 .dartImg{
   width: 8%;
   margin: 0 auto;
+}
+
+.stockDart{
+  display: flex;
+  justify-content: center;
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 1vw;
 }

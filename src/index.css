@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(./Assets/backgroundDart.jpg);
 }
 
 code {
@@ -69,7 +70,7 @@ code {
   animation-duration: 0.4s;
   animation-timing-function: linear;
   z-index: 4;
-  border-color:rgb(189, 24, 24);
+  border-color:aliceblue(189, 24, 24);
   animation-name: rotate-one;
 }
 
@@ -80,7 +81,7 @@ code {
   transform: translateX(-50%);
   font-size: 1.1rem;
   font-weight: bold;
-  color:cyan;
+  color:whitesmoke;
 }
 
 span.result span:nth-child(1) {

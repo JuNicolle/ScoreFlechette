@@ -29,12 +29,20 @@ const handleChange=(CharToSubstract)=>{
   setTotalScore(totalScore-(CharToSubstract*multiplicator));
   setMultiplicator(1);
   }
+  if (darts-1==0){
+    setDart(3);
+    setRound(rounds+1);
+  }else{  
+
+  setDart(darts-1)};
 };
 
 const replay=()=>{
   setTotalScore(501);
   setMultiplicator(1);
-};
+  setDart(3);
+  setRound(0);
+}
 
 
   return (
@@ -43,7 +51,26 @@ const replay=()=>{
         <header className='col-12 d-flex gap-3 justify-content-center mb-2 mt-2'>
           <h1>Flechettes</h1>
           <ScoreIndicator value={totalScore} maxValue={501} />
-          <img src={imgDart} alt="" className='dartImg'/>
+          <h4>Tour :{rounds}</h4>
+        
+        <div className='stockDart'>
+         {darts==3 && <>  
+          <img src={imgDart} alt="" className='dartImg' />
+          <img src={imgDart} alt="" className='dartImg' />
+          <img src={imgDart} alt="" className='dartImg' />
+         </>}
+
+         {darts==2 && <>  
+          <img src={imgDart} alt="" className='dartImg' />
+          <img src={imgDart} alt="" className='dartImg' />
+         </>}
+
+         {darts==1 && <>  
+          <img src={imgDart} alt="" className='dartImg' />
+         </>}
+        </div>
+
+
           </header>
           {totalScore==0? <>
               {/* {j'affiche le message de victoire} */}
