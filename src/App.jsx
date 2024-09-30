@@ -3,24 +3,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import ScoreIndicator from './Components/ScoreIndicator';
-import imgDart from './Assets/dart2.png';
+import imgDart from './Assets/hand-drawn-bullseye.png';
 
 document.title = "Jeu de Flechettes";
 
 function App() {  
 
   const [totalScore, setTotalScore]=useState(501);
+  const [oldScore, setOldScore]=useState(0);
   const [multiplicator, setMultiplicator]=useState(1);
   const [darts, setDart]=useState(3);
   const [rounds, setRound]=useState(0);
 
 const handleChange=(CharToSubstract)=>{
+  if (darts-1==0){
+    setDart(3);
+    setRound(rounds+1);
+    if (totalScore-(CharToSubstract*multiplicator)>=0){
+      setOldScore(totalScore-(CharToSubstract*multiplicator));
+    };
+  }else{  
+  setDart(darts-1);
+}
   if (CharToSubstract==25 && multiplicator==3){
     alert("Impossible de faire un triple sur le 25");
     setMultiplicator(1);
   } else if((totalScore-(CharToSubstract*multiplicator))<0){
     alert('Tour terminé');
     setMultiplicator(1);
+    setTotalScore(oldScore);
+    setDart(3);
   } else if((totalScore-(CharToSubstract*multiplicator))==0){
     setTotalScore(totalScore-(CharToSubstract*multiplicator));
     setMultiplicator(1);
@@ -29,12 +41,7 @@ const handleChange=(CharToSubstract)=>{
   setTotalScore(totalScore-(CharToSubstract*multiplicator));
   setMultiplicator(1);
   }
-  if (darts-1==0){
-    setDart(3);
-    setRound(rounds+1);
-  }else{  
-
-  setDart(darts-1)};
+  
 };
 
 const replay=()=>{
@@ -54,7 +61,7 @@ const replay=()=>{
           <h4>Tour :{rounds}</h4>
         
         <div className='stockDart'>
-         {darts==3 && <>  
+        {darts==3 && <>  
           <img src={imgDart} alt="" className='dartImg' />
           <img src={imgDart} alt="" className='dartImg' />
           <img src={imgDart} alt="" className='dartImg' />
